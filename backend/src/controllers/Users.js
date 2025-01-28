@@ -15,6 +15,14 @@ module.exports.getUsers = async(req, res) => {
 module.exports.createUser = async(req, res) => {
   try {
     const { name, email, password } = req.body;
+    
+    const userExists = await prisma.user.findFirst({
+      where: {
+        email,
+      }
+    })
+
+    if(userExists) return res.status(400).json({ message: 'User already registered!' });
 
     const user = await prisma.user.create({
       data: {
