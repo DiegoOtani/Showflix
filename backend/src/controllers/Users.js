@@ -38,3 +38,21 @@ module.exports.createUser = async(req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+module.exports.userLogin = async(req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await prisma.user.findFirst({
+      where: {
+        email,
+        password,
+      }
+    })
+
+    if(!user) return res.status(400).json({ message: 'Invalid email or password.' });
+
+    res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
