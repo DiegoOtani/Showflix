@@ -67,11 +67,13 @@ module.exports.userLogin = async(req, res) => {
     const user = await prisma.user.findFirst({
       where: {
         email,
-        password,
       }
-    })
+    });
 
-    if(!user) return res.status(400).json({ message: 'Invalid email or password.' });
+    if(!user) return res.status(400).json({ message: 'Invalid email.' });
+
+    const validPassword = await bcrypt.compare(password, user.password);
+    if(!validPassword) return res.status(400).json({ message: 'Invalid Password.' });
 
     const token = jwt.sign({
       id: user.id,
