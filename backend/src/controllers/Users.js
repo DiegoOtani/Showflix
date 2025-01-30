@@ -1,6 +1,8 @@
 const PrismaClient = require('@prisma/client').PrismaClient;
 
 const prisma = new PrismaClient();
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports.getUsers = async(req, res) => {
   try {
@@ -51,7 +53,23 @@ module.exports.userLogin = async(req, res) => {
 
     if(!user) return res.status(400).json({ message: 'Invalid email or password.' });
 
-    res.status(200).json(user);
+    const token = jwt.sign({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    )
+
+    res.status(200).json({
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      }
+    });
   } catch (error) {
     return res.status(500).json({ message: 'Internal server error' });
   }
