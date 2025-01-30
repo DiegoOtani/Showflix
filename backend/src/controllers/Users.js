@@ -3,6 +3,7 @@ const PrismaClient = require('@prisma/client').PrismaClient;
 const prisma = new PrismaClient();
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET;
+const bcrypt = require('bcrypt');
 
 module.exports.getUsers = async(req, res) => {
   try {
@@ -26,11 +27,14 @@ module.exports.createUser = async(req, res) => {
 
     if(userExists) return res.status(400).json({ message: 'User already registered!' });
 
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const user = await prisma.user.create({
       data: {
         name,
         email,
-        password,
+        password: hashedPassword,
       }
     })
 
