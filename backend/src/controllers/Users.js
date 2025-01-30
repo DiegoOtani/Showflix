@@ -38,7 +38,23 @@ module.exports.createUser = async(req, res) => {
       }
     })
 
-    res.status(201).json(user);
+    const token = jwt.sign({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    )
+
+    res.status(201).json({
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+      },
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Internal server error' });
