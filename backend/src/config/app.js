@@ -3,6 +3,7 @@ const cors = require('cors');
 require("dotenv").config();
 
 const userRoutes = require('../routes/Users');
+const genreRoutes = require('../routes/Genres');
 
 const app = express();
 
@@ -13,5 +14,6 @@ app.use(cors({
 }));
 
 app.use('/users', userRoutes);
+app.use('/genres', genreRoutes);
 
 module.exports = app;
