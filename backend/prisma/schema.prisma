@@ -20,8 +20,21 @@ model User {
 }
 
 model Genre {
-  id Int @id @default(autoincrement())
-  name String @unique
+  id    Int      @id @default(autoincrement())
+  name  String   @unique
+  shows TvShow[] @relation("TvShowGenres")
 
   @@map("genres")
+}
+
+model TvShow {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  img_url     String
+  language    String
+  rating      Float   @default(0)
+  genres      Genre[] @relation("TvShowGenres")
+
+  @@map("tv_shows")
 }
