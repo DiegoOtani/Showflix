@@ -39,3 +39,18 @@ module.exports.createTvShow = async(req, res) => {
     return res.status(500).json({ message: 'Internal Server Error.', error: error.message });
   }
 };
+
+module.exports.getShowByName = async(req, res) => {
+  try {
+    const { name } = req.params;
+    const tvShows = await TvShowService.getTvShowsByName(name);
+
+    if (tvShows.length === 0) {
+      return res.status(404).json({ message: 'No TV shows found with that name.' });
+    }
+
+    return res.status(200).json(tvShows);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal Server Error.', error: error.message });
+  }
+};

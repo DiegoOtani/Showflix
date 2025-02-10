@@ -14,6 +14,19 @@ class TvShowService {
   static createTvShow = (data) => {
     return prisma.tvShow.create({ data });
   };
+
+  static getTvShowsByName = (name) => {
+    return prisma.tvShow.findMany({
+      where: {
+        title: {
+          contains: name,
+        }
+      },
+      include: {
+        genres: true,
+      }
+    })
+  }
 };
 
 module.exports = TvShowService;
