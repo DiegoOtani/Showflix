@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ShowsContext } from "../../contexts/TvShowsContext";
 import TvShowsService from "../../services/tvshows";
 import Card from "../../components/Card";
+import { ShowsSectionStyled } from "./styles";
 
 export const TvShows = () => {
   const { shows, setShows } = useContext(ShowsContext);
@@ -24,7 +25,7 @@ export const TvShows = () => {
   }, [shows])
 
   return (
-    <section>
+    <ShowsSectionStyled>
       {shows.map(show => (
         <Card 
           key={show.id}
@@ -38,6 +39,6 @@ export const TvShows = () => {
         />
       ))}
 
-    </section>
+    </ShowsSectionStyled>
   )
 };
