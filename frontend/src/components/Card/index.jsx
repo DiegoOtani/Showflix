@@ -1,9 +1,8 @@
 import React from "react"
-import { CardProps } from "./types"
 import { CardStyled } from "./styles"
 import MovieInfo from "../ShowInfo"
 
-const Card = ({ imgUrl, title, language, rating, onClick, id, selected }: CardProps) => {
+const Card = ({ imgUrl, title, language, rating, onClick, id, selected }) => {
   const handleClick = () => {
     if( onClick) onClick(id);
   }

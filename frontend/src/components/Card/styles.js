@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardStyled = styled.div<{ selected: boolean }>`
+export const CardStyled = styled.div`
   height: 100%;
   min-width: 250px;
   max-width: 20vw;

@@ -1,9 +1,8 @@
 import React from 'react'
-import { MovieInfoTypes } from "./types";
 import { MovieInfoStyled } from "./styles";
 import { FaStar } from "react-icons/fa";
 
-const MovieInfo = ({ rating, language }: MovieInfoTypes) => {
+const MovieInfo = ({ rating, language }) => {
   return <MovieInfoStyled>
     <span className="rating">
       <FaStar />
