@@ -11,7 +11,7 @@ class LoginService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error('Error fetching types:', error.message);
+        console.error('Error fetching types:', error.message,);
       } else {
         console.error('Unexpected error:', error);
       }
