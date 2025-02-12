@@ -36,10 +36,14 @@ const AddShowForm = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     const newShow = { title, description, img_url: imgUrl, language, rating, genres };
-    console.log(newShow)
+    setTitle("");
+    setDescription("");
+    setImgUrl("")
+    setLanguage("")
+    setRating(0)
+    setGenres([])
     try {
       const data = await TvShowsService.createTvShow(newShow);
-      console.log(data)
     } catch (error) {
       console.error("Error creating Show:", error);
     }
