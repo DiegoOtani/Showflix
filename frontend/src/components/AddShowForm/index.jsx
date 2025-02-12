@@ -11,21 +11,29 @@ const AddShowForm = () => {
   const [availableGenres, setAvailableGenres] = useState([]);
 
   useEffect(() => {
-    try {
-      const loadGenres = async() => {
+    const loadGenres = async () => {
+      try {
         const data = await TvShowsService.getGenres();
         setAvailableGenres(data);
+      } catch (error) {
+        console.error("Erro ao carregar gêneros:", error);
       }
-      loadGenres();
-    } catch (error) {
-      console.error(error);
-    }
+    };
+    loadGenres();
   }, []);
+
+  const handleGenreChange = (e) => {
+    const genreName = e.target.value;
+    setGenres((prevGenres) =>
+      prevGenres.includes(genreName)
+        ? prevGenres.filter((name) => name !== genreName)
+        : [...prevGenres, genreName]
+    );
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newShow = { title, description, img_url: imgUrl, language, rating, genres };
-    
     console.log(newShow);
   };
 
@@ -74,14 +82,9 @@ const AddShowForm = () => {
           <label key={genre.id} className="flex items-center gap-2">
             <input
               type="checkbox"
-              value={genre.id}
-              checked={genres.includes(genre.id)}
-              onChange={(e) => {
-                const selectedId = parseInt(e.target.value, 10);
-                setGenres((prev) =>
-                  prev.includes(selectedId) ? prev.filter((id) => id !== selectedId) : [...prev, selectedId]
-                );
-              }}
+              value={genre.name}
+              checked={genres.includes(genre.name)}
+              onChange={handleGenreChange}
             />
             {genre.name}
           </label>
