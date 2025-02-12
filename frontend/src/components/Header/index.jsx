@@ -2,16 +2,21 @@ import { useState } from "react";
 import { HeaderStyled } from "./styles";
 import InputField from "../InputField";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [ search, setSearch] = useState("");
-
+  const navigate = useNavigate();
+  
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
 
   const handleSubmit = () => {
-    console.log("Pesquisado");
+    if(search !== "") {
+      navigate(`/shows/${search}`)
+      setSearch("");
+    }
   };
 
   return (
