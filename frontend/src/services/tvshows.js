@@ -43,6 +43,21 @@ class TvShowsService {
       throw error;
     }
   };
+
+  static async getGenres() {
+    try {
+      const response = await api.get('/genres');
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error fetching types:', error.message);
+      } else {
+        console.error('Unexpected error:', error);
+      }
+      throw error;
+    }
+  }
 };
 
 export default TvShowsService;
