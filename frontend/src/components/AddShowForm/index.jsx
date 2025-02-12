@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import TvShowsService from "../../services/tvshows";
 import InputField from "../InputField";
+import { Title, FormStyled, TextArea, InputDiv, InputSection, RatingInput, SubmitButtonStyled, FieldsetStyled, GenreCheckbox, GenreLabel, LegendStyled, GenresDiv } from "./styles";
 
 const AddShowForm = () => {
   const [title, setTitle] = useState("");
@@ -45,57 +46,67 @@ const AddShowForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 border rounded-lg">
-      <InputField 
-        placeholder={"Title"}
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Descrição"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="border p-2 rounded"
-        
-      />
-      <InputField 
-        placeholder="Image URL"
-        value={imgUrl}
-        onChange={(e) => setImgUrl(e.target.value)}
-      />
-      <InputField 
-        placeholder="Language"
-        value={language}
-        onChange={(e) => setLanguage(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Nota"
-        value={rating}
-        onChange={(e) => setRating(parseFloat(e.target.value))}
-        step="0.1"
-        min="0"
-        max="10"
-        className="border p-2 rounded"
-      />
-      <fieldset className="border p-2 rounded">
-        <legend>Gêneros</legend>
-        {availableGenres.map((genre) => (
-          <label key={genre.id} className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              value={genre.name}
-              checked={genres.includes(genre.name)}
-              onChange={handleGenreChange}
+    <FormStyled onSubmit={handleSubmit}>
+      <Title>Add a new TvShow</Title>
+      <InputSection>
+        <InputDiv>
+          <InputField 
+            placeholder={"Title"}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
             />
-            {genre.name}
-          </label>
-        ))}
-      </fieldset>
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+          <TextArea
+            placeholder="Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </InputDiv>
+
+        <InputDiv>
+          <InputField 
+            placeholder="Image URL"
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
+          />
+          <InputField 
+            placeholder="Language"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          />
+          <span style={{ color: "white" }}>Rating</span>
+          <RatingInput
+            type="number"
+            placeholder="Rating"
+            value={rating}
+            onChange={(e) => setRating(parseFloat(e.target.value))}
+            step="0.1"
+            min="0"
+            max="10"
+          />
+        </InputDiv>
+      </InputSection>
+
+      <GenresDiv>
+        <FieldsetStyled>
+          <LegendStyled>Gêneros</LegendStyled>
+          {availableGenres.map((genre) => (
+            <GenreLabel key={genre.id}>
+              <GenreCheckbox
+                type="checkbox"
+                value={genre.name}
+                checked={genres.includes(genre.name)}
+                onChange={handleGenreChange}
+              />
+              {genre.name}
+            </GenreLabel>
+          ))}
+        </FieldsetStyled>
+      </GenresDiv>
+
+      <SubmitButtonStyled type="submit">
         Adicionar Show
-      </button>
-    </form>
+      </SubmitButtonStyled>
+    </FormStyled>
   );
 };
 
