@@ -1,10 +1,11 @@
+import AddShowForm from "../../components/AddShowForm"
 import AuthWrapper from "../../components/AuthWrapper"
 
 const AddShowPage = () => {
   return (
     <AuthWrapper>
       <section>
-        AddShow
+        <AddShowForm />
       </section>
     </AuthWrapper>
   )
