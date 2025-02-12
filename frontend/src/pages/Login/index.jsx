@@ -6,6 +6,7 @@ import LoginService from "../../services/login";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
+import { LoginPageStyled, FormStyled, SubmitButtonStyled } from "./styles";
 
 const LoginPage = () => {
   const { setUser } = useContext(UserContext);
@@ -31,31 +32,34 @@ const LoginPage = () => {
     localStorage.setItem("token", response.token);
 
     setUser(response.user);
-    
+
     navigate('/');
   }
 
   return (
-    <section>
+    <LoginPageStyled>
       <h1>SHOWFLIX</h1>
-      <form onSubmit={handleSubmit}>
+      <FormStyled onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <label>Email</label>
         <InputField 
           icon={MdOutlineEmail}
           onChange={handleEmailChange}
           value={email}
           placeholder={"example@email.com"}
         />
+        <label>Password</label>
         <InputField 
           icon={RiLockPasswordLine}
           onChange={handlePasswordChange}
           value={password}
           placeholder={"password"}
         />
-        <button type="submit">
+        <SubmitButtonStyled type="submit">
           Login
-        </button>
-      </form>
-    </section>
+        </SubmitButtonStyled>
+      </FormStyled>
+    </LoginPageStyled>
   )
 }
 
