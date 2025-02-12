@@ -1,23 +1,25 @@
 import styled from "styled-components";
 
 export const InputFieldStyled = styled.div`
+  padding: 0px 10px;
   width: 80%;
   display: flex;
   gap: 10px;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 10px;
 
   input {
     width: 100%;
-    border-radius: 10px;
     padding: 10px;
     outline: none;
-    border: 2px solid #ccc;
-    background-color: #ffffff;
+    border: none;
   }
 `;
 
 export const SearchButton = styled.button`
   border: none; 
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #ffffff;
 
   &:hover {
     cursor: pointer;

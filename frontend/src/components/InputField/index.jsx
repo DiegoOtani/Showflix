@@ -10,7 +10,7 @@ const InputField = ({ icon: Icon, placeholder, onChange, value }) => {
         placeholder={placeholder}
       />
       <SearchButton>
-        <Icon color="white" size={20}/>
+        <Icon color="black" size={20}/>
       </SearchButton>
     </InputFieldStyled>
   )
