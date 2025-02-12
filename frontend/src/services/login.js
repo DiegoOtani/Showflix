@@ -11,11 +11,15 @@ class LoginService {
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error('Error fetching types:', error.message,);
+        if (error.response) {
+          return { message: error.response.data.message || "Erro desconhecido" };
+        } else {
+          return { message: "Erro de rede ou servidor" };
+        }
       } else {
-        console.error('Unexpected error:', error);
+        console.error('Erro inesperado:', error);
+        return { message: "Erro inesperado no servidor" };
       }
-      throw error;
     }
   };
 };

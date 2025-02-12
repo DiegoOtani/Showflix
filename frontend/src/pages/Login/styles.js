@@ -40,3 +40,11 @@ export const InputStyled = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
+
+export const ErrorMessage = styled.span`
+  color: white;
+  background-color: rgba(255, 0, 0, 0.8);
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px 20px;
+`;
