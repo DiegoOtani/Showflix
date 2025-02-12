@@ -6,7 +6,7 @@ import LoginService from "../../services/login";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
-import { LoginPageStyled, FormStyled, SubmitButtonStyled } from "./styles";
+import { LoginPageStyled, FormStyled, SubmitButtonStyled, InputStyled } from "./styles";
 
 const LoginPage = () => {
   const { setUser } = useContext(UserContext);
@@ -38,23 +38,27 @@ const LoginPage = () => {
 
   return (
     <LoginPageStyled>
-      <h1>SHOWFLIX</h1>
       <FormStyled onSubmit={handleSubmit}>
+      <h1>SHOWFLIX</h1>
         <h2>Login</h2>
-        <label>Email</label>
-        <InputField 
-          icon={MdOutlineEmail}
-          onChange={handleEmailChange}
-          value={email}
-          placeholder={"example@email.com"}
-        />
-        <label>Password</label>
-        <InputField 
-          icon={RiLockPasswordLine}
-          onChange={handlePasswordChange}
-          value={password}
-          placeholder={"password"}
-        />
+        <InputStyled>
+          <label>Email</label>
+          <InputField 
+            icon={MdOutlineEmail}
+            onChange={handleEmailChange}
+            value={email}
+            placeholder={"example@email.com"}
+          />
+        </InputStyled>
+        <InputStyled>
+          <label>Password</label>
+          <InputField 
+            icon={RiLockPasswordLine}
+            onChange={handlePasswordChange}
+            value={password}
+            placeholder={"password"}
+            />
+          </InputStyled>
         <SubmitButtonStyled type="submit">
           Login
         </SubmitButtonStyled>
