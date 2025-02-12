@@ -12,6 +12,7 @@ const ShowsSearchedPage = () => {
   useEffect(() => {
     try {
       const loadSearchedShows = async() => {
+        setShows([])
         const data = await TvShowsService.getTvShowsBySearch(showName);
         setShows(data);
       }
