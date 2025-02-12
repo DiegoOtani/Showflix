@@ -16,7 +16,7 @@ const AddShowForm = () => {
         const data = await TvShowsService.getGenres();
         setAvailableGenres(data);
       } catch (error) {
-        console.error("Erro ao carregar gêneros:", error);
+        console.error("Error loading genres:", error);
       }
     };
     loadGenres();
@@ -31,10 +31,16 @@ const AddShowForm = () => {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const newShow = { title, description, img_url: imgUrl, language, rating, genres };
-    console.log(newShow);
+    console.log(newShow)
+    try {
+      const data = await TvShowsService.createTvShow(newShow);
+      console.log(data)
+    } catch (error) {
+      console.error("Error creating Show:", error);
+    }
   };
 
   return (
