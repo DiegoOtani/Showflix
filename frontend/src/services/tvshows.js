@@ -1,4 +1,5 @@
 import { api } from "./api";
+import { authApi } from "./authApi";
 import axios from "axios";
 
 class TvShowsService {
@@ -32,7 +33,7 @@ class TvShowsService {
   
   static async getTvShowsBySearch(search) {
     try {
-      const response = await api.get(`/tvshows/${search}`);
+      const response = await authApi.get(`/tvshows/${search}`);
       return response.data.map((item) => item);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -46,7 +47,7 @@ class TvShowsService {
 
   static async createTvShow(newShow) {
     try {
-      const response = await api.post(`/tvshows`, newShow);
+      const response = await authApi.post(`/tvshows`, newShow);
       console.log(response.data)
       return response.data;
     } catch (error) {
