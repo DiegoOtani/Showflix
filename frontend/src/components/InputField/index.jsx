@@ -9,7 +9,7 @@ const InputField = ({ icon: Icon, placeholder, onChange, value, onClick }) => {
         onChange={onChange}
         placeholder={placeholder}
       />
-      <SearchButton onClick={onClick ? onClick : undefined}>
+      <SearchButton onClick={onClick ? onClick : undefined} type="button">
         <Icon color="black" size={20}/>
       </SearchButton>
     </InputFieldStyled>
