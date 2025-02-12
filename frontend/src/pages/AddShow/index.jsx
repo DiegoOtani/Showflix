@@ -1,8 +1,12 @@
+import AuthWrapper from "../../components/AuthWrapper"
+
 const AddShowPage = () => {
   return (
-    <section>
-      AddShow
-    </section>
+    <AuthWrapper>
+      <section>
+        AddShow
+      </section>
+    </AuthWrapper>
   )
 }
 

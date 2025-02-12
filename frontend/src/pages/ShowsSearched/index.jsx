@@ -4,6 +4,7 @@ import TvShowsService from "../../services/tvshows";
 import { ShowsContext } from "../../contexts/TvShowsContext";
 import { ShowsSectionStyled } from "./styles";
 import Shows from "../../components/Shows";
+import AuthWrapper from "../../components/AuthWrapper";
 
 const ShowsSearchedPage = () => {
   const { showName } = useParams();
@@ -24,9 +25,11 @@ const ShowsSearchedPage = () => {
   }, [showName])
 
   return (
-    <ShowsSectionStyled>
-      <Shows shows={shows}/>
-    </ShowsSectionStyled>
+    <AuthWrapper>
+      <ShowsSectionStyled>
+        <Shows shows={shows}/>
+      </ShowsSectionStyled>
+    </AuthWrapper>
   )
 }
 
