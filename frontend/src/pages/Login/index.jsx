@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputField from "../../components/InputField/index";
 import { MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import LoginService from "../../services/login";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -15,9 +16,11 @@ const LoginPage = () => {
     setPassword(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(email, password)
+    const response = await LoginService.login(email, password);
+    setEmail("");
+    setPassword("");
   }
 
   return (
