@@ -73,6 +73,7 @@ const LoginPage = () => {
         <InputStyled>
           <label>Password</label>
           <InputField 
+            type="password"
             icon={RiLockPasswordLine}
             onChange={handlePasswordChange}
             value={password}

@@ -1,11 +1,11 @@
 import { InputFieldStyled, SearchButton } from "./styles"
 
-const InputField = ({ icon: Icon, placeholder, onChange, value, onClick }) => {
+const InputField = ({ icon: Icon, placeholder, onChange, value, onClick, type="text" }) => {
   return (
     <InputFieldStyled>
       <input 
         value={value}
-        type="text"
+        type={type}
         onChange={onChange}
         placeholder={placeholder}
       />

@@ -32,7 +32,7 @@ const Header = () => {
       <nav>
         <Link to="/">Tv Shows</Link>
         <Link to="/show/add">Add Show</Link>
-        <a href="#" target="blank">About</a>
+        <a href="https://github.com/DiegoOtani/Showflix" target="blank">About</a>
       </nav>
     </HeaderStyled>
   )
