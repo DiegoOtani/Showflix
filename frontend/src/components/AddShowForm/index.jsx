@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import TvShowsService from "../../services/tvshows";
 import InputField from "../InputField";
-import { Title, FormStyled, TextArea, InputDiv, InputSection, RatingInput, SubmitButtonStyled, FieldsetStyled, GenreCheckbox, GenreLabel, LegendStyled, GenresDiv } from "./styles";
+import { Title, FormStyled, TextArea, InputDiv, InputSection, RatingInput, SubmitButtonStyled, FieldsetStyled, GenreCheckbox, GenreLabel, LegendStyled, GenresDiv, ErrorMessage } from "./styles";
+import validateTvShowForm from "../../helpers/validation";
 
 const AddShowForm = () => {
   const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ const AddShowForm = () => {
   const [rating, setRating] = useState(0);
   const [genres, setGenres] = useState([]);
   const [availableGenres, setAvailableGenres] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const loadGenres = async () => {
@@ -35,6 +37,11 @@ const AddShowForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setErrorMessage("");
+
+    const error =(validateTvShowForm(title, description, imgUrl, language, rating, genres)).error;
+    if(error) return setErrorMessage(error);
+
     const newShow = { title, description, img_url: imgUrl, language, rating, genres };
     setTitle("");
     setDescription("");
@@ -44,6 +51,7 @@ const AddShowForm = () => {
     setGenres([])
     try {
       const data = await TvShowsService.createTvShow(newShow);
+      if(data.error) setErrorMessage(data.error);
     } catch (error) {
       console.error("Error creating Show:", error);
     }
@@ -106,6 +114,8 @@ const AddShowForm = () => {
           ))}
         </FieldsetStyled>
       </GenresDiv>
+        
+      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
 
       <SubmitButtonStyled type="submit">
         Adicionar Show

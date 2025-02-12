@@ -51,12 +51,7 @@ class TvShowsService {
       console.log(response.data)
       return response.data;
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error fetching types:', error.message);
-      } else {
-        console.error('Unexpected error:', error);
-      }
-      throw error;
+      return { error: "Error creating show" };
     }
   }
 

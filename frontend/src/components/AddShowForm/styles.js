@@ -96,3 +96,12 @@ export const GenreCheckbox = styled.input`
   width: 20px;
   height: 20px;
 `;
+
+export const ErrorMessage = styled.span`
+  text-align: center;
+  color: white;
+  background-color: rgba(255, 0, 0, 0.8);
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px 20px;
+`;
