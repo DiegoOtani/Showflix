@@ -3,6 +3,7 @@ import TvShowsService from "../../services/tvshows";
 import InputField from "../InputField";
 import { Title, FormStyled, TextArea, InputDiv, InputSection, RatingInput, SubmitButtonStyled, FieldsetStyled, GenreCheckbox, GenreLabel, LegendStyled, GenresDiv, ErrorMessage } from "./styles";
 import validateTvShowForm from "../../helpers/validation";
+import { useNavigate } from "react-router-dom";
 
 const AddShowForm = () => {
   const [title, setTitle] = useState("");
@@ -13,6 +14,7 @@ const AddShowForm = () => {
   const [genres, setGenres] = useState([]);
   const [availableGenres, setAvailableGenres] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadGenres = async () => {
@@ -52,6 +54,7 @@ const AddShowForm = () => {
     try {
       const data = await TvShowsService.createTvShow(newShow);
       if(data.error) setErrorMessage(data.error);
+      navigate("/");
     } catch (error) {
       console.error("Error creating Show:", error);
     }

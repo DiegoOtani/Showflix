@@ -40,6 +40,8 @@ const validateTvShowForm = (title, description, imgUrl, language, rating, genres
   if (rating < 0 || rating > 10 || isNaN(rating)) return { error: "A avaliação deve ser um número entre 0 e 10. "};
 
   if (genres.length === 0) return { error: "elo menos um gênero deve ser selecionado. "};
+
+  return { error: null };
 };
 
 export default validateTvShowForm;

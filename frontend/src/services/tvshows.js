@@ -48,9 +48,9 @@ class TvShowsService {
   static async createTvShow(newShow) {
     try {
       const response = await authApi.post(`/tvshows`, newShow);
-      console.log(response.data)
       return response.data;
     } catch (error) {
+      console.log(error);
       return { error: "Error creating show" };
     }
   }
