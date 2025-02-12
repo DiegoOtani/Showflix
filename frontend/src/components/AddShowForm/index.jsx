@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import TvShowsService from "../../services/tvshows";
+import InputField from "../InputField";
 
 const AddShowForm = () => {
   const [title, setTitle] = useState("");
@@ -45,32 +46,27 @@ const AddShowForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 border rounded-lg">
-      <input
-        type="text"
-        placeholder="Título"
+      <InputField 
+        placeholder={"Title"}
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="border p-2 rounded"
       />
       <textarea
         placeholder="Descrição"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         className="border p-2 rounded"
+        
       />
-      <input
-        type="text"
-        placeholder="URL da imagem"
+      <InputField 
+        placeholder="Image URL"
         value={imgUrl}
         onChange={(e) => setImgUrl(e.target.value)}
-        className="border p-2 rounded"
       />
-      <input
-        type="text"
-        placeholder="Idioma"
+      <InputField 
+        placeholder="Language"
         value={language}
         onChange={(e) => setLanguage(e.target.value)}
-        className="border p-2 rounded"
       />
       <input
         type="number"
