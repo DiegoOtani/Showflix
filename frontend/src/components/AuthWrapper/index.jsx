@@ -7,8 +7,9 @@ const AuthWrapper = ({ children }) => {
   const navigate = useNavigate(); 
   
   useEffect(() => {
-    console.log(user)
-    if(Object.keys(user).length === 0) navigate("/login");
+    const token = localStorage.getItem("token");
+
+    if(!token || Object.keys(user).length === 0) navigate("/login");
   }, [user, navigate])
 
   return <>

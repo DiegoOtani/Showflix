@@ -27,7 +27,11 @@ const LoginPage = () => {
     setEmail("");
     setPassword("");
     if(response.message) return console.log(response.message)
+
+    localStorage.setItem("token", response.token);
+
     setUser(response.user);
+    
     navigate('/');
   }
 
