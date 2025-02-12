@@ -2,7 +2,7 @@ import { useState } from "react";
 import { HeaderStyled } from "./styles";
 import InputField from "../InputField";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Header = () => {
   const [ search, setSearch] = useState("");
@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <HeaderStyled>
-      <a className="logo" href="/">SHOWFLIX</a>
+      <Link className="logo" to="/">SHOWFLIX</Link>
       <InputField 
         icon={FaSearch}
         onChange={handleChange}
@@ -30,8 +30,8 @@ const Header = () => {
         onClick={handleSubmit}
       />
       <nav>
-        <a href="/">Tv Shows</a>
-        <a href="#" target="blank">Add Show</a>
+        <Link to="/">Tv Shows</Link>
+        <Link to="/show/add">Add Show</Link>
         <a href="#" target="blank">About</a>
       </nav>
     </HeaderStyled>
