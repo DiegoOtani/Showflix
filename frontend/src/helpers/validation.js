@@ -22,3 +22,24 @@ export const validatePassword = (password) => {
 
   return { isValid: true, message: "" };
 };
+
+const validateTvShowForm = (title, description, imgUrl, language, rating, genres) => {
+
+  if (!title || title.trim() === "") return { error: "O título não pode ser vazio. "};
+
+  if (!description || description.trim() === "") return { error: "A descrição não pode ser vazia. "};
+
+  try {
+    new URL(imgUrl); 
+  } catch (_) {
+    return { error: "A URL da imagem não é válida. "};
+  }
+
+  if (!language || language.trim() === "") return { error: "O idioma não pode ser vazio. "};
+
+  if (rating < 0 || rating > 10 || isNaN(rating)) return { error: "A avaliação deve ser um número entre 0 e 10. "};
+
+  if (genres.length === 0) return { error: "elo menos um gênero deve ser selecionado. "};
+};
+
+export default validateTvShowForm;
