@@ -33,7 +33,7 @@ class TvShowsService {
   static async getTvShowsBySearch(search) {
     try {
       const response = await api.get(`/tvshows/${search}`);
-      return response.data.map((item) => item.show);
+      return response.data.map((item) => item);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Error fetching types:', error.message);
