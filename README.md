@@ -63,10 +63,10 @@ Projeto desenvolvido para a disciplina de Desenolvimento Web Fullstack
   password: fullstack
 
   email: diego@gmail.com
-  password: diego
+  password: diegootani
 
   email:user@gmail.com
-  password: user
+  password: userpassword
 ```
 
 ## 📦 Como Rodar o Projeto
