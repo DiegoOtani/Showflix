@@ -56,6 +56,19 @@ Projeto desenvolvido para a disciplina de Desenolvimento Web Fullstack
 - React Router Dom
 - React Icons
 
+## 👨🏻 Usuários do sistema
+
+```json
+  email: projeto2@gmail.com
+  password: fullstack
+
+  email: diego@gmail.com
+  password: diego
+
+  email:user@gmail.com
+  password: user
+```
+
 ## 📦 Como Rodar o Projeto
 
 ### 🔹 Pré-requisitos:
